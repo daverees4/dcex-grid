@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Mobile Exercises Demo</title>
+    <link href="http://daveconservatoire.org/css/bootstrap.css" rel="stylesheet">
+    <link href="http://daveconservatoire.org/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://daveconservatoire.org/css/theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.4/howler.core.min.js"></script>
+  </head>
+  <body>
+    <div class="exercises-container">
+      <div class="progress-area card">
+        <div class="progress progress-striped active success" style="margin: 20px;"><div class="bar" style="width: 40%;"></div></div>
+      </div>
+      <div id="question-area" class="question-area">
+        <div class="question-card card">
+          <h1>What is the best music education site?</h1>
+        </div>
+        <div id="hint_1" class="hint-container">
+          <div class="card hint">
+            <img src="davatar.png" class="davatar float-left"/>
+            <div class="sb-container">
+              <div class="speech-bubble">
+                <h3>You're on the best site for music education now!</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="hint_2" class="hint-container">
+          <div class="card hint">
+            <img src="davatar.png" class="davatar float-left"/>
+            <div class="sb-container">
+              <div class="speech-bubble">
+                <h3>It's created by Dave and Wilker</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="hint_3" class="hint-container">
+          <div class="card hint">
+            <img src="davatar.png" class="davatar float-left"/>
+            <div class="sb-container">
+              <div class="speech-bubble">
+                <h3>DAVE CONSERVATOIRE!</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="answer-area">
+        <div class="answer-card card">
+          <h2>Answers</h2>
+          <h3 class="btn btn-block answer empty" id="a1">Dave Conservatoire</a>
+          <h3 class="btn btn-block answer empty" id="a2">Wilker School of Music</a>
+          <h3 class="btn btn-block answer empty" id="a3">CGP Grey</a>
+          <h3 class="btn btn-block answer empty" id="a4">Internet?  I don't like it!</a>
+        </div>
+        <div class="correct-card-container" id="correct-card-container">
+        <div class="correct-card card">
+          <h2>Correct!  Next question in <span>3 seconds</span></h2>
+          <div  class="progress progress-striped active success" style="margin: 20px;"><div class="bar bar-success" id="nextq-bar" style="width: 0%; transition: width 3000ms;"></div></div>
+      </div>
+    </div>
+        <div class="hint-card card" id="hint-card">
+          <h2>Need help?</h2>
+          <a id="hintbutton" class="dc-btn-yellow btn btn-block">Get a hint</a>
+      </div>
+    </div>
+    <script>
+    (function() {
+      var correct = new Howl({src: ['correct.mp3']});
+      var wrong = new Howl({src: ['wrong.mp3']});
+      var hint_count = 0;
+      var open = true;
+
+      function checkAnswer(e) {
+        if(e.target.classList.contains("empty") && open) {
+        if(e.target.id == "a1") {
+          correct.play();
+          document.getElementById(e.target.id).classList.add("btn-success");
+          document.getElementById(e.target.id).classList.remove("empty");
+          document.getElementById("correct-card-container").style.maxHeight="300px";
+          open=false;
+          document.getElementById("nextq-bar").style.width="100%";
+          document.getElementById("hint-card").style.display="none";
+        } else {
+          wrong.play();
+          document.getElementById(e.target.id).classList.add("dc-btn-red");
+          document.getElementById(e.target.id).classList.remove("empty");
+        }
+      }
+    }
+
+      var answers = document.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        answers[i].addEventListener('click', checkAnswer, false);
+      }
+      document.getElementById("hintbutton").addEventListener("click", function() {
+        hint_count++;
+        if (hint_count>document.getElementsByClassName("hint-container").length) {
+           document.getElementById("hintbutton").classList.remove('dc-btn-yellow');
+           document.getElementById("hintbutton").classList.add('dc-btn-red');
+           document.getElementById("hintbutton").textContent="No more hints left!";
+        } else {
+        for (i = hint_count; i <= document.getElementsByClassName("hint-container").length; i++) {
+        console.log(hint_count);
+        document.getElementById("hint_"+hint_count).style.maxHeight = "300px";
+      }
+      }
+      });
+    })();
+    </script>
+
+  </body>
+</html>

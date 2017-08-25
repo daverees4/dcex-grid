@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+}
+
+.exercises-container {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: 10% 40% 50%;
+
+}
+
+.progress-area {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+}
+
+.question-area {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  text-align: center;
+}
+
+
+.question-area h1 {
+  font-weight: 700;
+  fon
+}
+
+.hint-card h2, .answer-card h2 {
+  margin-top: 0;
+}
+
+.card {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  margin: 0 20px 20px 20px;
+  padding: 20px;
+}
+
+.correct-card-container {
+  max-height:0px;
+  transition: max-height 300ms linear;
+  overflow: hidden;
+}
+
+.answer-area {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.answer-card h3, #hintbutton {
+  font-weight: 700;
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+.hint {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 100%;
+  padding:20px;
+}
+
+.hint-container {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height .3s linear;
+}
+
+.davatar {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  width: 100%;
+}
+
+.speech-bubble {
+  position: relative;
+	background: #f3e7cd;
+	border-radius: .4em;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.sb-container {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 14px solid transparent;
+	border-right-color: #f3e7cd;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -7px;
+	margin-left: -14px;
+}
+
+
+@media screen and (min-width: 768px) {
+  .question-area {
+    grid-column-end: 2;
+    grid-row-end: 4;
+  }
+
+  .answer-area {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .question-card h1 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .hint {
+    grid-template-columns: 10% 90%
+  }
+}
